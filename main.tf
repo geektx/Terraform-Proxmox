@@ -1,7 +1,6 @@
-
 resource "proxmox_vm_qemu" "proxmox_vm_master" {
   count       = var.num_masters
-  name        = var.master_name"-${count.index}"
+  name        = "master-${count.index}"
   target_node = var.pm_node_name
   clone       = var.template_vm_name
   os_type     = "cloud-init"
@@ -29,7 +28,7 @@ resource "proxmox_vm_qemu" "proxmox_vm_master" {
 
 resource "proxmox_vm_qemu" "proxmox_vm_workers" {
   count       = var.num_nodes
-  name        = var.node_name"-${count.index}"
+  name        = "worker-${count.index}"
   target_node = var.pm_node_name
   clone       = var.template_vm_name
   os_type     = "cloud-init"
